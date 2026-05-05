@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "快捷便签",
+  "version": "1.0",
+  "description": "快捷便签",
+  "permissions": [
+    "storage",
+    "windows",
+    "contextMenus"
+  ],
+  "background": {
+    "service_worker": "init.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "resource/icon16.png",
+      "48": "resource/icon48.png",
+      "128": "resource/icon128.png"
+    },
+    "default_title": "便签"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "page/add.html",
+        "js/add.js",
+        "page/index.html",
+        "js/index.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+/*首页css*/
+
+/* 主容器 box 采用弹性布局，确保宽度不超出视口 */
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100vw;       /* 限制最大宽度为视口宽度 */
+    height: 100vh;
+    background: #ffffff;
+    border: none;           /* 原风格有边框，但为保险，边框不影响宽高 */
+    word-break: break-word; /* 强制长单词/URL换行，避免撑开宽度 */
+    padding: 5px;
+    overflow: hidden;
+}
+
+.note-container{
+    flex-grow: 1;
+    font-size: 16px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 4px 4px;
+    box-sizing: border-box;
+}
+
+.empty{
+    font-size: 13px;
+}
+
+
+
