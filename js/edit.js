@@ -1,18 +1,19 @@
 // 编辑便签
 let noteInput ;
 let saveButton ;
-let clearButton ;
+let cancelButton ;
 let statusDiv ;
 
 window.onload = () => {
     noteInput = document.getElementById('noteInput');
     saveButton = document.getElementById('saveButton');
-    clearButton = document.getElementById('clearButton');
+    cancelButton = document.getElementById('cancelButton');
     statusDiv = document.getElementById('status');
 
-    // 绑定事件
+    // 保存事件
     saveButton.addEventListener('click', saveContent);
-    clearButton.addEventListener('click', clearContent);
+    // 取消事件
+    cancelButton.addEventListener('click', navigateToHome);
 
     // 可选：按 Ctrl+Enter 保存
     noteInput.addEventListener('keydown', (e) => {
@@ -55,12 +56,6 @@ function loadContent() {
             showStatus('已加载上次保存的内容！');
         }
     });
-}
-
-// 清空内容
-function clearContent() {
-    noteInput.value = '';
-    showStatus('已清空输入框！');
 }
 
 // 跳转回到首页
