@@ -80,7 +80,7 @@ function loadContent() {
         if (content && content.trim() !== '') {
             noteContentDiv.innerText = content;
         } else {
-            noteContentDiv.innerHTML = '<div class="empty">双击记录...<br></div>';
+            noteContentDiv.innerHTML = '<div class="empty">✏️ 双击记录...<br></div>';
         }
     });
 }

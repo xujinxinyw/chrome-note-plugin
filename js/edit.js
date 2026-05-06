@@ -2,13 +2,11 @@
 let noteInput ;
 let saveButton ;
 let cancelButton ;
-let statusDiv ;
 
 window.onload = () => {
     noteInput = document.getElementById('noteInput');
     saveButton = document.getElementById('saveButton');
     cancelButton = document.getElementById('cancelButton');
-    statusDiv = document.getElementById('status');
 
     // 保存事件
     saveButton.addEventListener('click', saveContent);
@@ -23,17 +21,6 @@ window.onload = () => {
     });
     // 页面加载时自动加载已保存的内容
     loadContent();
-}
-
-// 显示状态消息
-function showStatus(message, isError = false) {
-    statusDiv.textContent = message;
-    statusDiv.style.display = 'block';
-    statusDiv.style.color = isError ? '#c62828' : '#2e7d32';
-
-    setTimeout(() => {
-        statusDiv.style.display = 'none';
-    }, 2000);
 }
 
 // 保存内容到 Chrome 存储
@@ -53,7 +40,6 @@ function loadContent() {
             console.error('加载失败：', chrome.runtime.lastError);
         } else if (result.userContent) {
             noteInput.value = result.userContent;
-            showStatus('已加载上次保存的内容！');
         }
     });
 }
