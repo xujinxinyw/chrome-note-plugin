@@ -6,7 +6,8 @@
   "permissions": [
     "storage",
     "windows",
-    "contextMenus"
+    "contextMenus",
+    "system.display"
   ],
   "background": {
     "service_worker": "init.js"
@@ -22,10 +23,8 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "page/add.html",
-        "js/add.js",
-        "page/index.html",
-        "js/index.js"
+        "page/*.html",
+        "js/*.js"
       ],
       "matches": [
         "<all_urls>"

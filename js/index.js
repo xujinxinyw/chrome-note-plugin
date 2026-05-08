@@ -9,19 +9,7 @@ window.onload = function () {
 }
 
 // 初始化窗口位置
-function initWindowPosition(){
-    // 获取当前窗口并居中
-    chrome.windows.getCurrent((win) => {
-        const screenWidth = window.screen.availWidth;
-        const screenHeight = window.screen.availHeight;
-        const newLeft = (screenWidth - win.width) / 2;
-        const newTop = (screenHeight - win.height) / 2;
-
-        chrome.windows.update(win.id, {
-            left: Math.max(0, Math.floor(newLeft)),
-            top: Math.max(0, Math.floor(newTop))
-        });
-    });
+function initWindowPosition() {
 }
 
 // 内容页面绑定双击事件
@@ -33,17 +21,9 @@ function bindContentDoubleClickEvent() {
 
 // 打开跳转到编辑页
 function openAndNavigateToEditPage() {
-    // 获取屏幕尺寸
-    const screenWidth = window.screen.availWidth;  // 可用屏幕宽度
-    const screenHeight = window.screen.availHeight; // 可用屏幕高度
-
     // 窗口尺寸
     const popupWidth = 550;
     const popupHeight = 500;
-
-    // 计算居中位置
-    const left = (screenWidth - popupWidth) / 2;
-    const top = (screenHeight - popupHeight) / 2;
 
     // 获取当前窗口的尺寸和位置（可选）
     chrome.windows.getCurrent((currentWin) => {
@@ -53,8 +33,8 @@ function openAndNavigateToEditPage() {
                 type: 'popup',
                 width: popupWidth,
                 height: popupHeight,
-                left: Math.max(0, Math.floor(left)),  // 确保不为负数
-                top: Math.max(0, Math.floor(top))                // 距离屏幕顶部的距离
+                left: currentWin.left,
+                top: currentWin.top
             }, function (newWindow) {
                 // 新窗口创建成功后，关闭当前窗口
                 if (currentWin && currentWin.id) {
@@ -77,10 +57,33 @@ function loadContent() {
 
         const content = result.userContent;
 
-        if (content && content.trim() !== '') {
+        const hasContent = content && content.trim() !== '';
+
+        if (hasContent) {
             noteContentDiv.innerText = content;
         } else {
             noteContentDiv.innerHTML = '<div class="empty">✏️ 双击记录...<br></div>';
         }
+
+        // 初始化trips消失动画
+        initTripsFadeOutAnimation(hasContent);
     });
+}
+
+// 初始化trips消失动画
+function initTripsFadeOutAnimation(hasContent) {
+    const tip = document.getElementById('trips');
+    if (tip) {
+        if (hasContent) {
+            setTimeout(() => {
+                tip.classList.add('fade-out');
+                tip.addEventListener('transitionend', () => {
+                    tip.style.display = 'none';
+                }, {once: true});
+            }, 2000);
+        } else {
+            // 无内容时直接删除提示（无淡出动画）
+            tip.style.display = 'none';
+        }
+    }
 }

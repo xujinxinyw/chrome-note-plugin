@@ -36,8 +36,20 @@
     border: 1px solid #E9DFD1;
     background: #FCF8F0;
     border-radius: 2px;
-    padding: 16px;
+    padding: 8px;
     box-sizing: border-box;
+}
+
+.trips{
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    color: #999999;
+    transition: opacity 0.3s ease;  /* 关键：让 opacity 变化有动画 */
+}
+
+.fade-out {
+    opacity: 0;
 }
 
 .empty{

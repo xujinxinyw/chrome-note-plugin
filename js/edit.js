@@ -1,7 +1,7 @@
 // 编辑便签
-let noteInput ;
-let saveButton ;
-let cancelButton ;
+let noteInput;
+let saveButton;
+let cancelButton;
 
 window.onload = () => {
     noteInput = document.getElementById('noteInput');
@@ -23,16 +23,6 @@ window.onload = () => {
     loadContent();
 }
 
-// 保存内容到 Chrome 存储
-function saveContent() {
-    const content = noteInput.value;
-    // 使用 chrome.storage.local 保存数据
-    chrome.storage.local.set({ 'userContent': content }, () => {
-        // 回到首页
-        navigateToHome()
-    });
-}
-
 // 加载已保存的内容
 function loadContent() {
     chrome.storage.local.get(['userContent'], (result) => {
@@ -44,19 +34,20 @@ function loadContent() {
     });
 }
 
-// 跳转回到首页
-function  navigateToHome(){
-    // 获取屏幕尺寸
-    const screenWidth = window.screen.availWidth;  // 可用屏幕宽度
-    const screenHeight = window.screen.availHeight; // 可用屏幕高度
+// 保存内容到 Chrome 存储
+function saveContent() {
+    const content = noteInput.value;
+    // 使用 chrome.storage.local 保存数据
+    chrome.storage.local.set({'userContent': content}, () => {
+        // 回到首页
+        navigateToHome()
+    });
+}
 
-    // 窗口尺寸
+// 跳转回到首页
+function navigateToHome() {
     const popupWidth = 550;
     const popupHeight = 500;
-
-    // 计算居中位置
-    const left = (screenWidth - popupWidth) / 2;
-    const top = (screenHeight - popupHeight) / 2;
 
     // 获取当前窗口的尺寸和位置（可选）
     chrome.windows.getCurrent((currentWin) => {
@@ -66,8 +57,8 @@ function  navigateToHome(){
                 type: 'popup',
                 width: popupWidth,
                 height: popupHeight,
-                left: Math.max(0, Math.floor(left)),  // 确保不为负数
-                top: Math.max(0, Math.floor(top))                // 距离屏幕顶部的距离
+                left: currentWin.left,
+                top: currentWin.top
             }, function (newWindow) {
                 // 新窗口创建成功后，关闭当前窗口
                 if (currentWin && currentWin.id) {
