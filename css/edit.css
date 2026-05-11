@@ -1,6 +1,5 @@
 /*编辑页面css*/
 
-/* 主容器 box 采用弹性布局，确保宽度不超出视口 */
 .container {
     display: flex;
     flex-direction: column;
@@ -17,11 +16,11 @@
 textarea:focus {
     outline: none;
     border-color: #B8956A;
-    box-shadow: 0 0 0 2px rgba(184, 149, 106, 0.15);  /* 暖棕色阴影 */
+    box-shadow: 0 0 0 2px rgba(184, 149, 106, 0.15);
 }
 
 textarea, input {
-    caret-color: #B8956A;  /* 暖棕色光标 */
+    caret-color: #B8956A;
 }
 
 .btn-box span:hover {
@@ -30,11 +29,11 @@ textarea, input {
 
 .btn-box span{
     display: inline-flex;
-    color: #B8956A;        /* 暖棕色，替代原iOS蓝 */
+    color: #B8956A;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    padding: 2px 4px;
+    padding: 3px 4px;
 }
 
 #noteInput{
@@ -44,10 +43,14 @@ textarea, input {
     min-height: 300px;
     resize: none;
     font-size: 16px;
-    border: 1.5px solid #EBE2D4;   /* 暖灰边框 */
+    border: 1.5px solid #EBE2D4;
+    background: #FFFCF7;
     border-radius: 4px;
     box-sizing: border-box;
     overflow-y: auto;
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    padding: 8px;                  /* 舒适内边距 */
+    padding: 8px;
+}
+
+.clearButton{
 }

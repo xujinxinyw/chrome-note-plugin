@@ -2,16 +2,20 @@
 let noteInput;
 let saveButton;
 let cancelButton;
+let clearButton;
 
 window.onload = () => {
     noteInput = document.getElementById('noteInput');
     saveButton = document.getElementById('saveButton');
     cancelButton = document.getElementById('cancelButton');
+    clearButton = document.getElementById('clearButton');
 
     // 保存事件
     saveButton.addEventListener('click', saveContent);
     // 取消事件
     cancelButton.addEventListener('click', navigateToHome);
+    // 清空事件
+    clearButton.addEventListener('click', clearContent);
 
     // 可选：按 Ctrl+Enter 保存
     noteInput.addEventListener('keydown', (e) => {
@@ -42,6 +46,11 @@ function saveContent() {
         // 回到首页
         navigateToHome()
     });
+}
+
+// 清空内容
+function clearContent() {
+    noteInput.value = ''
 }
 
 // 跳转回到首页
